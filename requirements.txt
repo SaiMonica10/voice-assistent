@@ -1,0 +1,20 @@
+# ─── Voice Layer ──────────────────────────────────────
+elevenlabs>=1.7.0              # TTS (text-to-speech)
+SpeechRecognition>=3.10.0     # STT (speech-to-text)
+pyaudio>=0.2.14               # Microphone access (required by SpeechRecognition)
+
+# ─── Brain Layer ──────────────────────────────────────
+groq>=0.4.0                   # Groq LLM API client
+
+# ─── Tools Layer ──────────────────────────────────────
+duckduckgo-search>=6.2.0      # Web search (no API key needed!)
+requests>=2.31.0              # HTTP calls (news, weather)
+
+# ─── Utilities ────────────────────────────────────────
+python-dotenv>=1.0.0          # .env loading
+pygame>=2.5.0                 # Audio playback
+
+# ─── Web & UI Layer ───────────────────────────────────
+fastapi>=0.100.0              # Web server
+uvicorn>=0.23.0               # ASGI server
+websockets>=11.0.0            # Real-time communication

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS UI</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-mesh"></div>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="glass-header">
+            <h1 class="logo">JARVIS <span>OS</span></h1>
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <span id="status-text">Initializing Systems...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Visualization Core -->
+            <section class="core-container">
+                <div class="jarvis-core" id="jarvis-core">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                    <div class="center-orb"></div>
+                </div>
+                <h2 id="state-label" class="state-label">WAKING UP</h2>
+            </section>
+
+            <!-- Transcript Panel -->
+            <section class="transcript-panel glass-panel">
+                <div class="panel-header">
+                    <h3>Conversation Log</h3>
+                </div>
+                <div class="chat-log" id="chat-log">
+                    <!-- Messages will be injected here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>

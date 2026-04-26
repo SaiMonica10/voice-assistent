@@ -1,124 +1,122 @@
-# 🎤 ElevenLabs Voice Assistant (Python)
+# ⚙️ JARVIS — Personal AI Assistant
 
-![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
-![ElevenLabs](https://img.shields.io/badge/ElevenLabs-Conversational%20AI-purple)
-![License](https://img.shields.io/badge/License-MIT-green)
+> Inspired by Iron Man's JARVIS. Built on ElevenLabs voice + Groq AI brain.
 
-A **real-time voice assistant** built with the **ElevenLabs
-Conversational AI SDK**.\
-This application allows users to interact with an ElevenLabs AI agent
-using **live microphone input and voice responses**.
+## ✨ What JARVIS Can Do
 
-------------------------------------------------------------------------
+| Command | Example |
+|---|---|
+| 🌍 **Web Search** | "Search for the best Python libraries for data science" |
+| 📰 **Live News** | "What's happening in the world today?" / "Technology news" |
+| 🌤️ **Weather** | "What's the weather in Mumbai?" |
+| 📂 **Open Apps** | "Open VS Code" / "Open Spotify" |
+| 🔗 **Open URLs** | "Open github.com" |
+| 📸 **Screenshot** | "Take a screenshot" |
+| 💻 **System Info** | "What's my battery level?" |
+| 💬 **Conversation** | Any general question or chat |
 
-# 🚀 Features
+## 🏗️ Architecture
 
--   🎙 Real-time voice interaction
--   🤖 Powered by ElevenLabs Conversational AI
--   🔊 Automatic speech playback
--   📝 Live transcripts displayed in terminal
--   ⚡ Uses Agent configuration from ElevenLabs dashboard
--   🛑 Graceful shutdown with Ctrl + C
-
-------------------------------------------------------------------------
-
-# 🧠 How It Works
-
-The program:
-
-1.  Loads environment variables from a `.env` file
-2.  Connects to the ElevenLabs API
-3.  Initializes a conversational AI session
-4.  Captures microphone input
-5.  Sends speech transcripts to the ElevenLabs agent
-6.  Receives AI responses and plays them through speakers
-7.  Displays transcripts and responses in the terminal
-
-------------------------------------------------------------------------
-
-# 📂 Project Structure
-
-    voice-assistant
-    │
-    ├── main.py
-    ├── requirements.txt
-    ├── .env
-    └── README.md
-
-------------------------------------------------------------------------
-
-# ⚙️ Installation
-
-## Clone the repository
-
-``` bash
-git clone https://github.com/SaiMonica10/voice-assistent.git
-cd elevenlabs-voice-assistant
+```
+🎤 Voice Layer (ElevenLabs TTS + Google STT)
+        ↕
+🧠 Brain Layer (Groq llama-3.3-70b-versatile)
+        ↕  ← Function Calling / ReAct Pattern
+🛠️ Tools Layer (Search · News · Weather · System)
 ```
 
-## Create a virtual environment
+## 🚀 Quick Start
 
-``` bash
-python -m venv venv
+### 1. Get your API keys (all free)
+
+| API | Free Tier | Get it here |
+|---|---|---|
+| **Groq API** | Extremely generous | [console.groq.com](https://console.groq.com/keys) |
+| **NewsAPI** | 100 req/day | [newsapi.org/register](https://newsapi.org/register) |
+| **OpenWeatherMap** | 1M calls/month | [openweathermap.org/api](https://openweathermap.org/api) |
+
+### 2. Configure your `.env` file
+
+```bash
+cp .env .env.backup   # always backup first
 ```
 
-Activate:
-
-Mac / Linux
-
-``` bash
-source venv/bin/activate
+Edit `.env` and fill in:
+```
+GROQ_API_KEY=your_groq_key
+NEWS_API_KEY=your_newsapi_key          # optional
+WEATHER_API_KEY=your_weather_key      # optional
+USER_NAME=Your Name
+DEFAULT_CITY=Your City
 ```
 
-Windows
+### 3. Install dependencies
 
-``` bash
-venv\Scripts\activate
-```
+```bash
+# Activate your virtual environment
+source venv/bin/activate   # Mac/Linux
 
-## Install dependencies
-
-``` bash
+# Install everything
 pip install -r requirements.txt
 ```
 
-Example requirements.txt
+### 4. Run JARVIS
 
-    elevenlabs
-    python-dotenv
+```bash
+python main.py
+```
 
-------------------------------------------------------------------------
+### 5. Talk to JARVIS!
+- Say **"Goodbye JARVIS"** to exit
+- Say **"Clear memory"** to reset conversation history
 
-# 🔑 Environment Setup
+---
 
-Create a `.env` file:
+## 📁 Project Structure
 
-    AGENT_ID=your_agent_id_here
-    ELEVENLABS_API_KEY=your_api_key_here
+```
+voice-assistent/
+├── main.py                    # 🎯 Entry point — main loop
+├── config.py                  # ⚙️  All settings & API keys
+├── requirements.txt           # 📦 Dependencies
+├── .env                       # 🔑 API keys (never commit this!)
+│
+├── brain/
+│   └── groq_agent.py          # 🧠 Groq LLM + tool calling (ReAct loop)
+│
+├── voice/
+│   ├── listener.py            # 🎤 Speech-to-Text (Google STT)
+│   └── speaker.py             # 🔊 Text-to-Speech (ElevenLabs)
+│
+├── tools/
+│   ├── search.py              # 🔍 DuckDuckGo web + news search
+│   ├── weather.py             # 🌤️  OpenWeatherMap weather
+│   ├── news.py                # 📰 NewsAPI + DuckDuckGo fallback
+│   └── system_control.py     # 💻 Open apps, URLs, screenshots
+│
+└── voice_assistent.py         # 🗃️  Original (kept for reference)
+```
 
-  Variable             Description
-  -------------------- --------------------------------------------
-  AGENT_ID             Your ElevenLabs Conversational AI agent ID
-  ELEVENLABS_API_KEY   Your ElevenLabs API key
+## 🎓 Learning Concepts in This Code
 
-------------------------------------------------------------------------
+| Concept | Where to find it |
+|---|---|
+| **LLM API integration** | `brain/groq_agent.py` |
+| **Prompt engineering** | `brain/groq_agent.py` → `SYSTEM_PROMPT` |
+| **Function Calling / Tool Use** | `brain/groq_agent.py` → `TOOL_DEFINITIONS` |
+| **ReAct Agent Pattern** | `brain/groq_agent.py` → `think_and_respond()` |
+| **REST API consumption** | `tools/weather.py`, `tools/news.py` |
+| **Speech recognition** | `voice/listener.py` |
+| **Modular Python architecture** | Overall project structure |
 
-# ▶️ Running the Assistant
+## 🛣️ Roadmap
 
-    python main.py
+- [x] **Phase 1** — Groq LLM brain
+- [x] **Phase 2** — Web search, news, weather, system tools
+- [ ] **Phase 3** — Long-term memory with ChromaDB (vector DB)
+- [ ] **Phase 4** — Send emails via Gmail API
+- [ ] **Phase 5** — Vision: "What's on my screen?" (Groq Multimodal/Llama)
 
-Expected output:
+---
 
-    🤖 Setting up voice assistant for Sai Monica...
-    ✅ Initializing voice assistant...
-    🎤 Voice Assistant ready! Speak now... (Ctrl+C to stop)
-
-Speak into your microphone to interact with the assistant.
-
-------------------------------------------------------------------------
-
-# 💬 Example Output
-
-    👤 You: Hello
-    🤖 Agent: Hi there! How can I assist you today?
-
+*Built as a learning project for AI/ML Engineering. Each component teaches a real industry concept.*
