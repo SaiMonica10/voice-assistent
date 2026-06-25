@@ -7,6 +7,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
 # ─── Identity ─────────────────────────────────────────────────────────────────
 JARVIS_NAME = "JARVIS"
 USER_NAME   = os.getenv("USER_NAME", "Boss")      # Full name (for logs)
